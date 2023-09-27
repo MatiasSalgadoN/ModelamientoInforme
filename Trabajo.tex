@@ -1,0 +1,613 @@
+\documentclass[letter,12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-tabla]{babel}
+\usepackage[sfdefault, condensed]{roboto}
+\usepackage[margin=1cm]{geometry}
+\usepackage{multicol,graphicx,fancyhdr,eso-pic,url,float,cite,lmodern,listings,times,textcomp, amsthm,amsmath,amssymb,dsfont,color,colortbl,sidecap,xspace,epic,eepic,anysize,setspace, hyperref,pdflscape,subfigure}
+\usepackage{blindtext}
+
+%%%%%%Glosario
+%\usepackage[acronym]{glossaries}
+%\makeglossaries
+%\renewcommand{\glossaryname}{Glosario}
+%\renewcommand{\acronymname}{Acrónimos}
+
+
+%\usepackage{apacite} %bibliografias Bibtex
+
+%Tipos de Letra
+%\renewcommand{\rmdefault}{phv} % Arial
+\usepackage{mathptmx} %Times
+%Margenes
+\marginsize{2cm}{2cm}{2cm}{2cm}
+\spacing{1}%interlineado
+
+  \providecommand{\keywords}[1]{\textbf{\textit{Palabras Clave---}} #1}
+
+\newcommand\BackgroundPic{ \put(-3,0){ \parbox[b][\paperheight]{\paperwidth}{ \vfill \centering \includegraphics[width=\paperwidth,height=\paperheight]{portada.png} \vfill }}} 
+  
+%Colores Ulagos
+%COLOREAR SISTEMA
+\definecolor{gray97}{gray}{.97}
+\definecolor{gray75}{gray}{.75}
+\definecolor{gray45}{gray}{.45}
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\definecolor{amarillo}{RGB}{255,182,18}
+\definecolor{verde}{RGB}{52,178,51}
+\definecolor{rojo}{RGB}{237,41,57}
+\definecolor{azulu}{RGB}{19,83,139}
+\definecolor{azul}{RGB}{0,91,187}
+\definecolor{negro}{RGB}{35,31,32}
+\definecolor{naranjo}{RGB}{251,79,20}
+
+%COLOREAR TEXTO
+\newcommand\rojo[1]{\textcolor[RGB]{237,41,57}{#1}}
+\newcommand\gris[1]{\textcolor[gray]{.65}{#1}}
+\newcommand\azul[1]{\textcolor[RGB]{0,91,187}{#1}}
+\newcommand\verde[1]{\textcolor[RGB]{52,178,51}{#1}}
+\newcommand\naranjo[1]{\textcolor[RGB]{251,79,20}{#1}}
+\newcommand\amarillo[1]{\textcolor[RGB]{255,182,18}{#1}}
+\newcommand\morado[1]{\textcolor[RGB]{143,35,179}{#1}}
+\newcommand\negro[1]{\textcolor[RGB]{35,31,32}{#1}}
+
+
+\newcommand\cita[1]{{\scriptsize \begin{flushright}\emph{(#1)}\end{flushright}}}%formato cita: \cita{texto}
+
+  
+%%%Entornos de desarrollo
+\newtheorem{ejemplo}{Ejemplo}
+\newtheorem{definir}{Definición}
+\newtheorem{prueba}{Prueba}
+\newtheorem{demo}{Demostración}
+\newtheorem{obs}{Observación}
+
+\newcommand{\ignore}[1]{}
+  
+  %%%CODIGOS DE PROGRAMACION
+\lstset{%backgroundcolor=\color{lbcolor},
+	frame=Ltb, framerule=0pt, aboveskip=0.5cm, tabsize=4, rulecolor=, language=Python, %%%CAMBIAR POR LENGUAJE DE PREFERENCIA
+ stringstyle=\ttfamily,  %basicstyle=\footnotesize,
+        upquote=true, aboveskip={1.5\baselineskip}, columns=fixed, showstringspaces=false, extendedchars=true,breaklines=true, prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}, showtabs=false, showspaces=false, showstringspaces=false,
+        %tipos de letra y colores
+        identifierstyle=\ttfamily,
+        keywordstyle=\bfseries \color{black}, %palabras reservadas
+        commentstyle= \scriptsize\color[RGB]{99,99,99}, %comentarios
+        stringstyle=\color{black},%cadena de texto
+        %numeracion de lineas
+        framextopmargin=3pt, framexbottommargin=3pt, framexleftmargin=0.4cm,
+        framesep=0pt, rulesep=.4pt, rulesepcolor=\color{black}, numbers=left, numbersep=15pt, numberstyle=\tiny, numberfirstline = false, breaklines=true,literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1 {Ñ}{{\~N}}1 {ñ}{{\~n}}1 {¿}{{?`}}1
+}
+\renewcommand{\lstlistingname}{Código}
+%%%%FIN CODIGOS DE PROGRAMACION
+\def\figurename{}
+  
+%%%%%%%%%%ENCABEZADO Y PIE DE PAGINA
+%encabezado de las paginas pares e impares.
+\rhead[PP]{Ingeniería Civil en Informática}
+\renewcommand{\headrulewidth}{0.5pt}
+%pie de pagina de las paginas pares e impares.
+\lfoot[nombre]{Nombre Apellido}
+\rfoot[rut]{Universidad de Los Lagos}
+\renewcommand{\footrulewidth}{0.5pt}
+%encabezado y pie de pagina de la pagina inicial de un capitulo.
+\fancypagestyle{plain}{
+\fancyhead[R]{Ingeniería Civil en Informática}
+\fancyfoot[L]{Nombre Apellido}
+\fancyfoot[R]{Universidad de Los Lagos}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+}
+\pagestyle{fancy} 
+%%%%%%%%%%FIN ENCABEZADO Y PIE DE PAGINA 
+ 
+
+
+\begin{document}
+
+%%%%%%%%%%%PORTADA%%%%%%%%%%%%%%%%%%%%%
+\setlength{\unitlength}{1 cm} %Especificar unidad de trabajo
+\thispagestyle{empty}
+
+\AddToShipoutPicture*{\BackgroundPic}
+{\color{white}
+   \title{\scshape\Huge{Farmacia Rayos X}\\\vspace{1cm}
+        \Large Departamento de Ciencias de la Ingeniería\\
+        \Large Ingeniería Civil en Informática\\
+        \Large Modelamiento y Paradigmas de la Programación\\
+        \large Puerto Montt, Chile}
+   \author{
+      Victor Calbucura\\
+      victordamian.calbucura@alumnos.ulagos.cl
+      \and Diego Leiva\\
+      diegoroberto.leiva@alumnos.ulagos.cl
+      \and Álvaro Ramos\\
+      alvarogonzalo.ramos@alumnos.ulagos.cl
+      \and Matías Salgado\\
+      matiasfelipe.salgado@alumnos.ulagos.cl
+   }
+   \date{\today}
+   \maketitle
+   \ClearShipoutPicture
+   }
+
+
+\cleardoublepage
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+\tableofcontents
+\listoffigures
+%\renewcommand{\listtablename}{Ãndice de tablas}
+\listoftables
+%%%%%%%%%%%%%FIN PORTADA%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+%%%%%%%RESUMEN%%%%%%%%%%%
+\begin{abstract}\thispagestyle{empty}
+
+En el siguiente documento se presenta ....
+
+\keywords{Modelo entidad relación, Modelo Relacional, Modelamiento de datos, MER, MR, Base de datos}
+\end{abstract}
+
+\cleardoublepage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+
+
+
+
+%%%%%%%%COMIENZO
+
+
+
+
+
+
+\chapter{Contextualización}
+
+\section{Introducción}
+La reconocida cadena de farmacias ``Recetas Rayos X'' ha solicitado la implementación de un sistema realizado mediante bases de datos, con el fin de poder organizar y ordenar el funcionamiento y la información de la empresa.
+
+La red farmacéutica se ha comunicado mediante el siguiente enunciado, nombrando las necesidades y requisitos que presentan:
+
+  La cadena de farmacias ``Recetas Rayos X'' necesita un sistema para administrar la información de sus operaciones, como son la compra, venta y administración de medicamentos, demás de los pacientes y quien les receto un medicamento. La información que se debe almacenar es la siguiente:
+\begin{enumerate}
+  \item Los pacientes se identifican por el RUT y hay que registrar el nombre, apellido, fecha de nacimiento, correo, dirección, varios teléfonos y sistema previsional.
+  \item Existen diversas previsiones de salud, tanto sociales como privadas y están correctamente codificadas.
+
+  \item Los médicos se identifican mediante el RUT. Para cada médico hay que almacenar el nombre, apellido, fecha de nacimiento, las especialidades y los años de ejercicios.
+
+  \item Existen diversas especialidades las cuales están adecuadamente codificadas.
+
+  \item Cada empresa farmacéutica se identifica por un código, se almacena el nombre y un número de teléfono.
+
+ \item  Para cada medicamento hay que registrar el nombre comercial y la fórmula. Cada medicamento lo vende una empresa farmacéutica dada, y el nombre comercial identifica ese medicamento de manera unívoca entre los productos de esa empresa. Si se borra una empresa farmacéutica, ya no hace falta realizar el seguimiento de sus productos.
+
+ \item  Cada farmacia tiene un código, nombre, dirección y número de teléfono.
+
+ \item  Cada paciente tiene un médico de cabecera. Cada médico tiene, como mínimo un paciente. Podría suceder que con el tiempo el médico de cabecera de un paciente cambie. Por lo tanto es importante mantener un registro de las fechas de inicio y término de esta supervisión médica.
+ \item Los pacientes pueden adquirir medicamentos con o sin receta.
+
+\item   Cada farmacia vende varios medicamentos y tiene un precio para cada uno de ellos. Cada medicamento se puede vender en varias farmacias, y el precio puede variar de una a otra.
+
+ \item  Los médicos recetan drogas a sus pacientes. Cada médico puede recetar una o varias drogas a varios pacientes, y cada paciente puede conseguir recetas de varios médicos. Cada receta tiene una fecha y lista de drogas y una cantidad asociada con ellas.
+
+ \item  Las empresas farmacéuticas tienen contratos de larga duración con las farmacias. Cada empresa farmacéutica puede contratar con varias farmacias, y cada farmacia puede contratar con varias empresas farmacéuticas. Para cada contrato hay que guardar la fecha de inicio, la de término y el texto íntegro.
+ \item Las farmacias nombran a un supervisor para cada contrato. Siempre debe haber un supervisor por contrato, pero el supervisor de un contrato puede cambiar durante su período de validez.
+ \end{enumerate}
+
+
+\section{Objetivo}
+
+\subsection{Objetivo General}
+Desarrollar e implementar un sistema óptimo de bases de datos
+\subsection{Objetivos Específicos}
+ \begin{enumerate}
+     \item Identificar entidades y atributos en base a los requerimientos solicitados por la empresa.
+     \item 
+     \item
+ \end{enumerate}
+\section{Viabilidad}
+
+\section{Justificación y Aporte}
+
+\section{Equipo de Trabajo y Responsabilidades}
+
+\section{Metodología de Trabajo}\label{sec:mettrabajo}
+
+
+\begin{landscape}
+\subsection{Plan de Trabajo}
+En base a la metodología de trabajo expuesta en la Sección \ref{sec:mettrabajo} se presenta la Carta Gantt de la Figura \ref{f:gantt}.
+
+\begin{figure}[hbt]
+\centering
+ % \includegraphics[width=23cm]{}
+  \caption{Carta Gantt del proyecto \dots}
+  \label{f:gantt}
+\end{figure}
+\end{landscape}
+
+\section{Metodología de Desarrollo}
+
+\chapter{Problema a Resolver}
+\section{Accidentes Geográficos}\label{s:enunciado}
+Dado el siguiente enunciado se requiere diseñar e implementar su base de datos.
+
+\begin{enumerate}\justifying
+\item\label{i:1} Se almacenan los siguientes accidentes geográficos: ríos, lagos y montañas.
+\item\label{i:2} De cada accidente se almacenan su posición horizontal y vertical según el eje de la tierra, además de su nombre
+\item\label{i:3} De los ríos se almacena su longitud, de las montañas su altura y de los lagos su extensión.
+\item\label{i:4} Se almacena también información sobre cada país, su nombre, su extensión y su población.
+\item\label{i:5} Se desea almacenar información que permite saber en qué país está cada accidente geográfico, teniendo en cuenta que cada accidente puede estar en más de un país.
+\item\label{i:6} Se almacena también los nombres de cada localidad del planeta. Y se almacena por qué localidades pasa cada río.
+\end{enumerate}
+
+\chapter{Modelo Entidad Relación (MER)}
+\section{Entidades}
+Una vez analizado el enunciado de la Sección \ref{s:enunciado} se pueden determinar las siguientes entidades.
+
+Del numeral \ref{i:1} se pueden determinar las entidades \textbf{Ríos}, \textbf{Lagos} y \textbf{Montañas}, del numeral \ref{i:3} se pueden determinar los atributos propios de cada una de estas entidades: \textbf{Ríos} (Longitud del río), \textbf{Lagos} (Superficie que cubre) y \textbf{Montañas} (Altura), estas entidades se aprecian en la Figura \ref{f:lmr}. 
+
+\begin{figure}[H]\centering
+  \includegraphics[width=8cm]{images/lmr.png}
+  \caption{Entidades Ríos, Lagos y Montañas}
+  \label{f:lmr}
+\end{figure}
+
+Del numeral \ref{i:2} se puede determinar que los tres accidentes antes mencionados comparten tres atributos, las cuales son \textit{posición horizontal}, \textit{vertical} y su \textit{nombre}, por lo que se puede añadir estos atributos a cada una de las entidades o generar una herencia, donde se ha optado por esto último, llamandola \textbf{Accidentes} a la entidad padre tal como se puede preciar en la Figura \ref{f:accidente}.
+
+\begin{figure}[H]\centering
+  \includegraphics[width=3cm]{images/accidentes.png}
+  \caption{Entidad Accidentes}
+  \label{f:accidente}
+\end{figure}
+
+La herencia completa extraída de los numerales \ref{i:1} al \ref{i:3} de la Sección \ref{s:enunciado} se presenta en al Figura \ref{f:herencia} donde se ha optado por que sea una relación exclusiva sin solapamiento, lo que quiere decir que solo pueden haber accidentes geográficos Ríos, Lagos y Montañas, cualquier otro no se puede almacenar en la base de datos, a su vez cada accidente puede ser una cosa al mismo tiempo.
+
+\begin{figure}[H]\centering
+  \includegraphics[width=5cm]{images/herencia.png}
+  \caption{Herencia de los accidentes geográficos}
+  \label{f:herencia}
+\end{figure}
+
+Del numeral \ref{i:4} se puede determinar que existe una entidad llamada \textbf{Paises} con sus atributos propios ID y Nombre, como se puede ver en la Figura \ref{f:paises}.
+
+\begin{figure}[H]\centering
+  \includegraphics[width=3cm]{images/paises.png}
+  \caption{Entidad Paises}
+  \label{f:paises}
+\end{figure}
+
+Del numeral \ref{i:6} se puede determinar que existe una entidad llamada \textbf{Localidad} que identifica a una zona de algún país, la cual posee los atributos IDL y Nombre como se visualiza en la Figura \ref{f:localidades}.
+
+\begin{figure}[H]\centering
+  \includegraphics[width=3cm]{images/localidades.png}
+  \caption{Entidad Localidades}
+  \label{f:localidades}
+\end{figure}
+
+Cada uno de estas entidades generas a partir del enunciado se pueden apreciar en la Figura \ref{f:entidades}.
+
+
+\begin{figure}[H]\centering
+  \includegraphics[width=10cm]{images/Entidades}
+  \caption{Entidades del enunciado}
+  \label{f:entidades}
+\end{figure}
+
+
+\section{Relaciones y Cardinalidades}
+
+Del numeral \ref{i:5} se determina que la entidad \textbf{País} puede o no tener accidentes geográficos, pero a su vez, cada accidente puede estar en por lo menos uno o mucho países, generandose la relación de la Figura \ref{f:estar}.
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=8cm]{images/mrestar}
+  \caption{Relación ``Estar''}
+  \label{f:estar}
+\end{figure}
+
+Del numeral \ref{i:6} se determina que la entidad \textbf{Localidad} se relaciona con cada río, dado que se guarda la información por la que un o más ríos pasan por cada una de las localidades como se ve en la Figura \ref{f:pasar}.
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=8cm]{images/mrpasar}
+  \caption{Relación ``pasar''}
+  \label{f:pasar}
+\end{figure}
+
+Adicionalmente, del mismo numeral \ref{i:6} se puede deducir si hay localidades, estas pertenecen a un país, la cual podría ser una relación débil, pero comúnmente una localidad es un estado, región o algo similar, estas por lo general poseen una codificación, por lo que se ha optado por que sea una relación fuerte, y como cada país esta dividido en varias localidades y una localidad pertenece solo a un país, la relación que se genera se ve en la Figura \ref{f:esta}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{images/mresta.png}
+  \caption{Relación ``esta''}
+  \label{f:esta}
+\end{figure}
+
+\begin{landscape}
+\section{Modelo Entidad Relación Completo}
+En base al enunciado presentado en la Sección \ref{s:enunciado} se ha diseñado el modelo entidad relación (MER) que se puede ver en la Figura \ref{f:mercompleto}.
+
+\begin{figure}[hbt]
+\centering
+  \includegraphics[width=23cm]{images/MER_accidente}
+  \caption{Modelo Entidad Relación del problema}
+  \label{f:mercompleto}
+\end{figure}
+\end{landscape}
+
+
+\chapter{Modelo Relacional}
+\section{Eliminación de Herencia}\label{elimher}
+
+Primero se ha realizado la conversión de la herencia, la cual se ha implementado la \textit{eliminación de supertipo}, generando las relaciones \textbf{\textit{ubicarse}}, \textbf{\textit{estar}} y \textbf{\textit{hallarse}} provenientes de la relación original \textit{Estar}, estas poseen la clave de \textbf{Países} en conjunto con la clave de la entidad respectiva, las cuales son \textbf{Montaña}, \textbf{Lago} y \textbf{Río} respectivamente, lo que genera el modelo entidad relación que se ve en la Figura \ref{f:mersinherencia}. Como hay países que no poseen lagos, montañas y/o ríos, debemos dejar la relación con cardinalidad mínima 0 para las entidades que antes estaban asociadas a la entidad raíz que fue eliminada.
+\begin{figure}[hbt]
+\centering
+  \includegraphics[width=15cm]{images/MER_accidente_SinHerencia.png}
+  \caption{Modelo Entidad Relación sin Herencia}
+  \label{f:mersinherencia}
+\end{figure}
+
+\section{Conversión de las relaciones}\label{s:mrdescripcion}
+
+
+Una vez tengamos el modelo entidad relación sin herencia, procedemos a convertir las relaciones.
+
+\subsection{Muchos a Muchos}
+La relación \textbf{\textit{Pasar}} (ver Figura \ref{f:pasar}) posee una correspondencia de N:N por lo que se genera la una tabla para esta relación con las claves de \textit{Río} y \textit{Localidades} (ver Figura \ref{f:mrpasar}).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=6cm]{images/entidadpasar.png}
+\caption{Conversión Relación Pasar M:N} 
+\label{f:mrpasar}
+\end{figure}
+
+
+La relación \textbf{\textit{Ubicarse}} (ver Figura \ref{f:mrubicarse}a) posee una correspondencia de N:N por lo que se genera la una tabla para esta relación con las claves de \textit{Montaña} y \textit{Países} (ver Figura \ref{f:mrubicarse}b).
+
+\begin{figure}[H]
+\centering
+\subfigure[Relación Ubicarse]{\includegraphics[width=6cm]{images/mrubicarse.png}}
+\subfigure[Entidad Ubicarse]{\includegraphics[width=6cm]{images/entidadubicarse.png}}
+\caption{Conversión Relación Ubicarse M:N} \label{f:mrubicarse}
+\end{figure}
+
+La relación \textbf{\textit{Estar}} (ver Figura \ref{f:mrestar}a) posee una correspondencia de N:N por lo que se genera la una tabla para esta relación con las claves de \textit{Lago} y \textit{Países} (ver Figura \ref{f:mrestar}b).
+
+\begin{figure}[H]
+\centering
+\subfigure[Relación Estar]{\includegraphics[width=6cm]{images/mrestar.png}}
+\subfigure[Entidad Estar]{\includegraphics[width=6cm]{images/entidadestar.png}}
+\caption{Conversión Relación Estar M:N} \label{f:mrestar}
+\end{figure}
+
+La relación \textbf{\textit{Hallarse}} (ver Figura \ref{f:mrhallarse}a) posee una correspondencia de N:N por lo que se genera la una tabla para esta relación con las claves de \textit{Río} y \textit{Países} (ver Figura \ref{f:mrhallarse}b).
+
+\begin{figure}[H]
+\centering
+\subfigure[Relación Hallarse]{\includegraphics[width=6cm]{images/mrhallarse.png}}
+\subfigure[Entidad Hallarse]{\includegraphics[width=6cm]{images/entidadhallarse.png}}
+\caption{Conversión Relación Hallarse M:N} \label{f:mrhallarse}
+\end{figure}
+
+\subsection{Uno a Muchos}
+
+Por último la relación \textbf{\textit{esta}} (ver Figura \ref{f:mresta}a) tiene correspondencia 1:N entre las entidades \textit{Países} con \textit{Localidades}, al tener \textit{Localidades} una cardinalidad menor (1:1), la entidad \textbf{Países} le comparte su clave como foranea, generando que \textit{Localidades} quede como se ve en la Figura \ref{f:mresta}b.
+
+\begin{figure}[H]
+\centering
+\subfigure[Relación Esta]{\includegraphics[width=6cm]{images/mresta.png}}
+\subfigure[Entidades Localidades nueva y Países]{\includegraphics[width=5cm]{images/entidadesta.png}}
+\caption{Conversión Relación \textbf{esta} 1:N} \label{f:mresta}
+\end{figure}
+
+\begin{landscape}
+\section{Modelo Relacional Completo}
+Según todo lo descrito en la Sección \ref{s:mrdescripcion} podemos generar el modelo relacional de la Figura \ref{f:mrcompleto}.
+\begin{figure}[hbt]
+\centering
+  \includegraphics[height=11cm]{images/MR10_accidente.png}
+  \caption{Modelo Relacional del problema}
+  \label{f:mrcompleto}
+\end{figure}
+\end{landscape}
+
+\chapter{UML}
+descripción del capítulo
+\section{Actores y Relaciones}
+\section{Casos de Uso}
+\section{Secuencia}
+\section{Estados}
+
+\chapter{Conclusión}
+tal como menciona \cite{001}
+
+
+%%%%%%
+%%agregar referencias
+%%\bibliographystyle{ieeetr}
+%%\bibliography{mybib.bib}
+%
+\begin{thebibliography}{}
+%%Bibliografía Formato IEEE
+\bibitem {b001} N. Apellido, Titulo, Revista, Edición, Paginas. Ciudad, Pais, Año,
+%
+\bibitem {001} R. M. Gutierrez, El impacto de la sobrepoblación de invertebrados en un ecosistema selvático, Revista Mundo Natural, 8, 73-82. 2013.
+%
+%\bibitem {002} R.A. Day How to Write and Publish a Scientific Paper, Second edn. ISI Press, Philadelphia. 1983
+%
+\end{thebibliography}  
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%\renewcommand{\appendixname}{Anexos}
+%\appendix
+%\chapter{Anexos}
+%\section{Árbol de Problemas}
+%\blindtext %reemplazar esta linea
+%\section{Carta Gantt}
+%\blindtext %reemplazar esta linea
+%
+%\section{Anexos del Trabajo}
+%\blindtext %reemplazar esta linea
+%
+%\section{Anexo de ejemplo con código}
+%
+%   \vspace{-0.8cm}
+%\begin{lstlisting}
+%-- Database: acuario
+%
+%-- DROP DATABASE acuario;
+%
+%CREATE DATABASE acuario
+%  WITH OWNER = postgres;
+%
+%
+%CREATE TABLE especies(
+%    sno integer PRIMARY KEY,
+%    nombre character varying(20),
+%    alimento character varying(20)
+%);
+%
+%CREATE TABLE tanques(
+%    tno integer PRIMARY KEY,
+%    nombre_tanque character varying(20),
+%    color_tanque character varying(20),
+%    volumen  integer NOT NULL
+%);
+%
+%CREATE TABLE peces(
+%    pno integer PRIMARY KEY,
+%    nombre_peces character varying(20),
+%    color_peces character varying(20),
+%    tno integer NOT NULL,
+%    sno integer NOT NULL,
+%    FOREIGN KEY (tno) REFERENCES tanques (tno) ON UPDATE CASCADE ON DELETE CASCADE,
+%    FOREIGN KEY (sno) REFERENCES especies (sno) ON UPDATE CASCADE ON DELETE CASCADE
+%);
+%
+%CREATE TABLE eventos(
+%    eno integer PRIMARY KEY,
+%    pno integer NOT NULL,
+%    fecha date,
+%    FOREIGN KEY (pno) REFERENCES peces (pno) ON UPDATE CASCADE ON DELETE CASCADE
+%);
+%
+%
+%
+%INSERT INTO especies VALUES(17,'delfin','arenque');
+%INSERT INTO especies VALUES(22,'tiburon','cualquier cosa');
+%INSERT INTO especies VALUES(74,'olomina','gusano');
+%INSERT INTO especies VALUES(93,'ballena','mantequilla de mani');
+%INSERT INTO especies VALUES(100,'pez espada','gusano');
+%INSERT INTO especies VALUES(120,'pez globo','gusano');
+%
+%-- select * from especies
+%
+%INSERT INTO tanques VALUES(55,'charco','verde',300);
+%INSERT INTO tanques VALUES(42,'letrina','azul',100);
+%INSERT INTO tanques VALUES(35,'laguna','rojo',400);
+%INSERT INTO tanques VALUES(85,'letrina','azul',100);
+%INSERT INTO tanques VALUES(38,'playa','azul',200);
+%INSERT INTO tanques VALUES(44,'laguna','verde',200);
+%
+%-- select * from tanques
+%
+%
+%INSERT INTO peces VALUES (164, 'charlie', 'naranjo', 42, 74);
+%INSERT INTO peces VALUES (347, 'flipper', 'negro', 35, 17);
+%INSERT INTO peces VALUES (228, 'killer', 'blanco', 42, 22);
+%INSERT INTO peces VALUES (281, 'albert', 'rojo', 55, 17);
+%INSERT INTO peces VALUES (119, 'bonnie', 'azul', 42, 22);
+%INSERT INTO peces VALUES (388, 'cory', 'morado', 35, 93);
+%INSERT INTO peces VALUES (700, 'maureen', 'blanco', 44, 100);
+%INSERT INTO peces VALUES (800, 'beni', 'rojo', 55, 17);
+%INSERT INTO peces VALUES (900, 'nemo', 'rojo', 44, 74);
+%INSERT INTO peces VALUES (150, 'vicky', 'rojo', 55, 100);
+%INSERT INTO peces VALUES (160, 'mati', 'amarillo', 42, 100);
+%INSERT INTO peces VALUES (110, 'rafa', 'azul', 85, 100);
+%INSERT INTO peces VALUES (222, 'jimmy', 'amarillo', 38, 100);
+%INSERT INTO peces VALUES (144, 'bisho', 'rojo', 42, 93);
+%INSERT INTO peces VALUES (125, 'chris', 'azul', 38, 93);
+%INSERT INTO peces VALUES (183, 'sable', 'amarillo', 44, 93);
+%INSERT INTO peces VALUES (241, 'taz', 'rojo', 55, 93);
+%INSERT INTO peces VALUES (300, 'baltazar', 'azul', 85, 100);
+%INSERT INTO peces VALUES (200, 'cash', 'azul', 85, 100);
+%INSERT INTO peces VALUES (424, 'bandido', 'verde', 35, 100);
+%INSERT INTO peces VALUES (454, 'romo', 'blanco', 85, 93);
+%
+%
+%-- select * from peces
+%
+%INSERT INTO eventos VALUES 
+%(3456 , 347 , '2010-01-26'),
+%(6653 , 164 , '2010-05-14'),
+%(5644 , 347 , '2010-05-15'),
+%(5645 , 347 , '2010-05-30'),
+%(6789 , 281 , '2010-04-30'),
+%(5211 , 228 , '2010-08-20'),
+%(6719 , 700 , '2010-10-22'),
+%(4555 , 164 , '2011-11-03'),
+%(9647 , 281 , '2011-12-06'),
+%(5347 , 281 , '2011-01-01');
+%
+%--INSERT INTO eventos VALUES (3456, 164, '2010-01-26'); 
+%--INSERT INTO eventos VALUES (6653, 347, '2010-05-14'); 
+%--INSERT INTO eventos VALUES (5644, 347, '2010-05-15'); 
+%--INSERT INTO eventos VALUES (5645, 347, '2010-05-30'); 
+%--INSERT INTO eventos VALUES (6789, 228, '2010-04-30'); 
+%--INSERT INTO eventos VALUES (5211, 119, '2010-08-20'); 
+%--INSERT INTO eventos VALUES (6719, 388, '2010-10-22'); 
+%--INSERT INTO eventos VALUES (4555, 164, '2011-11-03'); 
+%--INSERT INTO eventos VALUES (9647, 281, '2011-12-21'); 
+%--INSERT INTO eventos VALUES (5369, 281, '2011-01-01'); 
+%
+%
+%-- ALTER TABLE tanques ADD medida character varying(2); 
+%
+%-- UPDATE tanques SET medida = 'ml';
+%
+%-- select * from tanques;
+%
+%-- ALTER TABLE tanques DROP medida;
+%
+%-- SELECT * FROM especies;
+%-- SELECT * FROM tanques;
+%\end{lstlisting}\vspace{-0.3cm}
+
+
+\end{document}
